@@ -1,0 +1,27 @@
+[package]
+name = "pdf2png"
+version = "0.1.0"
+edition = "2024"
+
+# build.rs downloads pdfium at compile time and generates pdfium_embedded.rs
+build = "build.rs"
+
+[dependencies]
+# CLI argument parsing
+clap = { version = "4", features = ["derive"] }
+
+# PDF rendering via Google pdfium (dynamic binding — we load the embedded library at runtime)
+pdfium-render = { version = "0.8", features = ["image"] }
+
+# Image manipulation (stacking, PNG encoding)
+image = "0.25"
+
+# JSON serialisation for stdout result
+serde_json = "1"
+
+# Temporary directory for extracting the embedded pdfium binary at runtime
+tempfile = "3"
+
+[dev-dependencies]
+# Also used in integration tests for temp output directories
+tempfile = "3"

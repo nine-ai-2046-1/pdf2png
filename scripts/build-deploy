@@ -1,0 +1,2 @@
+cargo build --release && cp ./target/release/pdf2png $HOME/.local/bin/
+
